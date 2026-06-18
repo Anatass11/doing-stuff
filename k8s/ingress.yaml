@@ -1,0 +1,33 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app-ingress
+  namespace: my-apps
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - host: myapp.local
+      http:
+        paths:
+          - path: /project-a
+            pathType: Prefix
+            backend:
+              service:
+                name: mini-project-a-service
+                port:
+                  number: 8080
+          - path: /project-b
+            pathType: Prefix
+            backend:
+              service:
+                name: mini-project-b-service
+                port:
+                  number: 8080
+          - path: /project-c
+            pathType: Prefix
+            backend:
+              service:
+                name: mini-project-c-service
+                port:
+                  number: 8080
