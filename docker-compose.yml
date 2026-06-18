@@ -1,0 +1,71 @@
+version: '3.8'
+
+services:
+  # Мини-проект A
+  jpn-cross:
+    build:
+      context: ./jpncross
+      dockerfile: Dockerfile
+    container_name: jpn-cross
+    ports:
+      - "8081:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - JAVA_OPTS=-Xmx256m
+    networks:
+      - app-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "http://localhost:8080/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Мини-проект B
+  g2048:
+    build:
+      context: ./g2048
+      dockerfile: Dockerfile
+    container_name: g-2048
+    ports:
+      - "8082:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - JAVA_OPTS=-Xmx256m
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  # Мини-проект C
+  scripts:
+    build:
+      context: ./scripts
+      dockerfile: Dockerfile
+    container_name: scripts
+    ports:
+      - "8083:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - JAVA_OPTS=-Xmx256m
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  # Общий Nginx для балансировки (опционально)
+  nginx:
+    image: nginx:alpine
+    container_name: app-gateway
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    networks:
+      - app-network
+    depends_on:
+      - jpn-cross
+      - g2048
+      - scripts
+
+networks:
+  app-network:
+    driver: bridge

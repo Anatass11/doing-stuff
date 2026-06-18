@@ -1,22 +1,28 @@
-FROM openjdk:21-jdk-slim AS builder
+FROM maven:3.9-eclipse-temurin-21 AS build
 
-WORKDIR /app
+WORKDIR /build
+
+# Кэшируем зависимости
 COPY pom.xml .
 RUN mvn dependency:go-offline
 
 COPY src ./src
 RUN mvn clean package -DskipTests
 
-# Финальный образ
-FROM openjdk:21-jdk-slim
+FROM eclipse-temurin:21-jre-alpine
 
 WORKDIR /app
-COPY --from=builder /app/target/*.jar app.jar
 
-# Создаем пользователя для безопасности
-RUN groupadd -r appuser && useradd -r -g appuser appuser
-USER appuser
+# Копируем JAR
+COPY --from=build /build/target/*.jar app.jar
+
+# Добавляем healthcheck
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+    CMD wget --quiet --tries=1 --spider http://localhost:8080/actuator/health || exit 1
+
+# Оптимизация JVM для контейнеров
+ENV JAVA_OPTS="-XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0"
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar app.jar"]
