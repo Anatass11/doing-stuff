@@ -2,6 +2,7 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/g2048/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/g2048/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/jpncross/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/jpncross/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/scripts/src/main/java" charset="UTF-8" />
