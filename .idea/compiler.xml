@@ -1,17 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
+    <excludeFromCompile>
+      <directory url="file://$PROJECT_DIR$/scripts/src/main/resources/archetype-resources" includeSubdirectories="true" />
+    </excludeFromCompile>
     <annotationProcessing>
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="stuff" />
+        <module name="g2048" />
+        <module name="jpncross" />
+        <module name="scripts" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="stuff" target="21" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="g2048" options="-parameters" />
+      <module name="jpncross" options="" />
+      <module name="scripts" options="-parameters" />
       <module name="stuff" options="-parameters" />
     </option>
   </component>
