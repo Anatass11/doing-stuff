@@ -1,6 +1,6 @@
-package my.jpnkross;
+package my.jpncross;
 
-import my.jpnkross.logick.*;
+import my.jpncross.logick.*;
 
 
 public class Main {

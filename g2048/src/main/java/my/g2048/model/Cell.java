@@ -1,4 +1,4 @@
-package my.sg2048.game.model;
+package my.g2048.model;
 
 import lombok.Getter;
 import lombok.Setter;

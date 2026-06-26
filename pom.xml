@@ -6,45 +6,30 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <!-- Идентификаторы родительского проекта -->
     <groupId>com.mycompany</groupId>
     <artifactId>my-project-parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-
-    <!-- ВАЖНО: указываем, что это родительский POM -->
     <packaging>pom</packaging>
 
-    <!-- Описание (опционально) -->
     <name>My Project Parent</name>
     <description>Parent POM for all mini-projects</description>
 
-    <!--
-        ⭐ Управление версиями зависимостей
-        Здесь мы объявляем ВСЕ зависимости, которые могут понадобиться
-        дочерним модулям, но НЕ подключаем их автоматически
-    -->
+    <!-- Общие свойства для всех модулей -->
     <properties>
         <java.version>21</java.version>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <!-- Версии библиотек (удобно обновлять все сразу) -->
         <spring-boot.version>3.2.0</spring-boot.version>
         <lombok.version>1.18.30</lombok.version>
         <junit.version>5.10.1</junit.version>
         <slf4j.version>2.0.9</slf4j.version>
     </properties>
 
-    <!--
-        ⭐ Dependency Management (не путать с dependencies!)
-        Здесь мы объявляем ВЕРСИИ зависимостей.
-        Дочерние модули будут использовать эти версии,
-        но зависимости НЕ подключаются автоматически!
-    -->
+    <!-- Управление версиями зависимостей -->
     <dependencyManagement>
         <dependencies>
-            <!-- Spring Boot BOM (Bill of Materials) - управляет всеми версиями Spring -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
@@ -52,30 +37,22 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
-            <!-- Lombok -->
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
             </dependency>
-
-            <!-- JUnit 5 -->
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter</artifactId>
                 <version>${junit.version}</version>
                 <scope>test</scope>
             </dependency>
-
-            <!-- SLF4J -->
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
                 <version>${slf4j.version}</version>
             </dependency>
-
-            <!-- Другие общие зависимости -->
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
@@ -84,10 +61,7 @@
         </dependencies>
     </dependencyManagement>
 
-    <!--
-        ⭐ Общие плагины для сборки
-        Настройки компиляции, тестирования и т.д.
-    -->
+    <!-- Общие настройки сборки -->
     <build>
         <pluginManagement>
             <plugins>
@@ -96,7 +70,6 @@
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <version>${spring-boot.version}</version>
                 </plugin>
-
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
@@ -106,25 +79,16 @@
                         <target>${java.version}</target>
                     </configuration>
                 </plugin>
-
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>3.2.2</version>
-                    <configuration>
-                        <includes>
-                            <include>**/*Test.java</include>
-                        </includes>
-                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
     </build>
 
-    <!--
-        ⭐ СПИСОК ВСЕХ ДОЧЕРНИХ МОДУЛЕЙ
-        Это самое важное - перечисляем все мини-проекты
-    -->
+    <!-- Список модулей -->
     <modules>
         <module>jpncross</module>
         <module>g2048</module>

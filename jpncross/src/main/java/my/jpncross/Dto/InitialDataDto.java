@@ -1,4 +1,4 @@
-package my.jpnkross.Dto;
+package my.jpncross.Dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

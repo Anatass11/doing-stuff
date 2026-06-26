@@ -1,4 +1,4 @@
-package my.tasks;
+package my.scripts;
 
 import java.io.BufferedReader;
 import java.io.IOException;

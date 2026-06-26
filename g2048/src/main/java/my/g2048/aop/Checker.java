@@ -1,9 +1,9 @@
-package my.sg2048.game.aop;
+package my.g2048.aop;
 
 import lombok.extern.slf4j.Slf4j;
-import my.sg2048.game.model.Cell;
-import my.sg2048.game.model.Field;
-import my.sg2048.game.services.FieldService;
+import my.g2048.model.Cell;
+import my.g2048.model.Field;
+import my.g2048.services.FieldService;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;

@@ -1,6 +1,6 @@
-package my.jpnkross.logick;
+package my.jpncross.logick;
 
-import my.jpnkross.obj.Line;
+import my.jpncross.obj.Line;
 
 import java.util.ArrayList;
 import java.util.List;

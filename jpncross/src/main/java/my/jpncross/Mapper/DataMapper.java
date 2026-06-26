@@ -1,9 +1,9 @@
-package my.jpnkross.Mapper;
+package my.jpncross.Mapper;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import my.jpnkross.obj.Data;
+import my.jpncross.obj.Data;
 
 import java.util.ArrayList;
 import java.util.Arrays;

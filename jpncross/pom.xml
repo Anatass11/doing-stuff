@@ -6,100 +6,27 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <!--
-        ⭐ ССЫЛКА НА РОДИТЕЛЯ
-        Указываем, откуда брать настройки
-    -->
     <parent>
         <groupId>com.mycompany</groupId>
         <artifactId>my-project-parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath> <!-- Путь к родительскому POM -->
+        <relativePath>../pom.xml</relativePath>  <!-- Важно! Путь к родителю -->
     </parent>
 
-    <!--
-        ⭐ УНИКАЛЬНЫЙ ID этого модуля
-        groupId наследуется от родителя (можно не указывать)
-    -->
-    <artifactId>jpn-cross</artifactId>
-
-    <!-- version наследуется от родителя (можно не указывать) -->
-    <!-- <version>1.0.0-SNAPSHOT</version> -->
-
-    <!--
-        ⭐ Тип упаковки
-        jar - для обычного приложения
-        war - для веб-приложения
-    -->
+    <artifactId>jpncross</artifactId>
     <packaging>jar</packaging>
-
-    <name>Mini Project A</name>
-    <description>First microservice</description>
-
-    <!--
-        ⭐ ЗАВИСИМОСТИ ТОЛЬКО ДЛЯ ЭТОГО МОДУЛЯ
-        Здесь указываем только ТЕ зависимости, которые нужны
-        конкретно этому мини-проекту
-    -->
+    <name>Japan Cross</name>
     <dependencies>
-        <!-- Spring Boot Starter Web -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <!--
-                Версия НЕ указывается, т.к. берется из parent
-                через dependencyManagement
-            -->
-        </dependency>
-
-        <!-- Spring Boot Starter Actuator (для healthcheck) -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-
-        <!-- Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <optional>true</optional>
+            <scope>provided</scope>
         </dependency>
-
-        <!-- Тестирование -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- Специфичная для этого модуля зависимость -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
         </dependency>
     </dependencies>
 
-    <!--
-        ⭐ СБОРКА (опционально)
-        Можно переопределить или добавить свои настройки
-    -->
-    <build>
-        <plugins>
-            <!-- Spring Boot плагин для создания исполняемого JAR -->
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <mainClass>com.mycompany.miniprojecta.Application</mainClass>
-                    <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
-                    </excludes>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>

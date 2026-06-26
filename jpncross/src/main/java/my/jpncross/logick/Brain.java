@@ -1,9 +1,9 @@
-package my.jpnkross.logick;
+package my.jpncross.logick;
 
-import my.jpnkross.Mapper.DataMapper;
-import my.jpnkross.obj.Cord;
-import my.jpnkross.obj.Data;
-import my.jpnkross.obj.Table;
+import my.jpncross.Mapper.DataMapper;
+import my.jpncross.obj.Cord;
+import my.jpncross.obj.Data;
+import my.jpncross.obj.Table;
 
 import java.util.List;
 

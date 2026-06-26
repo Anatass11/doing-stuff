@@ -1,4 +1,4 @@
-package my.sg2048.game.config;
+package my.g2048.config;
 
 import org.springframework.context.annotation.Configuration;
 

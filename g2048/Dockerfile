@@ -2,11 +2,22 @@ FROM maven:3.9-eclipse-temurin-21 AS build
 
 WORKDIR /build
 
+# Копируем родительский POM
+COPY ../pom.xml /build/pom.xml
+
+# Копируем POM текущего модуля
+COPY pom.xml /build/g2048/pom.xml
+
+# Переходим в папку модуля
+WORKDIR /build/g2048
+
 # Кэшируем зависимости
-COPY pom.xml .
 RUN mvn dependency:go-offline
 
+# Копируем исходники модуля
 COPY src ./src
+
+# Собираем
 RUN mvn clean package -DskipTests
 
 FROM eclipse-temurin:21-jre-alpine

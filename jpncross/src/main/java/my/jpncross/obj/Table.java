@@ -1,4 +1,4 @@
-package my.jpnkross.obj;
+package my.jpncross.obj;
 
 import lombok.Getter;
 

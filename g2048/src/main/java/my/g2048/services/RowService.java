@@ -1,6 +1,6 @@
-package my.sg2048.game.services;
+package my.g2048.services;
 
-import my.sg2048.game.model.Row;
+import my.g2048.model.Row;
 import org.springframework.stereotype.Service;
 
 @Service
